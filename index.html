@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jino Mathew M J | Data Analyst</title>
+<title>Jino Mathew M J | Portfolio</title>
 
 <style>
 body { margin:0; font-family:Arial; background:#0f172a; color:white; }
-
 nav { padding:20px; }
 
 /* HERO */
@@ -20,11 +19,17 @@ nav { padding:20px; }
     flex-wrap:wrap;
 }
 
+/* PROFILE */
 .profile {
     width:150px;
     border-radius:50%;
     border:3px solid #22c55e;
-    cursor:pointer;
+    transition:0.3s;
+}
+
+.profile:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow:0 10px 25px rgba(34,197,94,0.6);
 }
 
 .hero-text { max-width:500px; }
@@ -47,20 +52,16 @@ button {
     border-radius:10px;
 }
 
-/* IMAGE MODAL */
-#imageModal {
-    display:none;
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.9);
+/* CURSOR */
+.cursor {
+    margin-left:5px;
+    color:#22c55e;
+    animation:blink 1s infinite;
 }
 
-#imageModal img {
-    display:block;
-    margin:auto;
-    width:300px;
-    margin-top:100px;
+@keyframes blink {
+    0%,50%,100%{opacity:1;}
+    25%,75%{opacity:0;}
 }
 
 /* CHATBOT */
@@ -69,7 +70,6 @@ button {
     top:20px;
     right:20px;
     display:flex;
-    align-items:center;
     gap:10px;
 }
 
@@ -118,22 +118,15 @@ button {
     overflow-y:auto;
 }
 
-/* CHAT BUBBLES */
+/* CHAT */
 .message {
     max-width:75%;
     padding:10px;
     border-radius:15px;
 }
 
-.user {
-    align-self:flex-end;
-    background:#22c55e;
-}
-
-.bot {
-    align-self:flex-start;
-    background:#334155;
-}
+.user { align-self:flex-end; background:#22c55e; }
+.bot { align-self:flex-start; background:#334155; }
 
 .typing {
     font-style:italic;
@@ -157,10 +150,10 @@ button {
 
 <!-- HERO -->
 <section class="hero">
-<img src="profile.jpg" class="profile" onclick="openImage()">
+<img src="profile.jpg" class="profile">
 
 <div class="hero-text">
-<h1 id="role-text"></h1>
+<h1><span id="role-text"></span><span class="cursor">|</span></h1>
 <p>Data Analyst with strong background in M&E, dashboards, and analytics.</p>
 
 <div class="socials">
@@ -174,11 +167,6 @@ button {
 </div>
 </section>
 
-<!-- IMAGE MODAL -->
-<div id="imageModal" onclick="closeImage()">
-<img src="profile.jpg">
-</div>
-
 <!-- EDUCATION -->
 <section>
 <h2>🎓 Education</h2>
@@ -189,20 +177,9 @@ button {
 <!-- EXPERIENCE -->
 <section>
 <h2>💼 Experience</h2>
-<div class="card">
-<h3>Data Analyst - Diya Ghar</h3>
-<p>Power BI dashboards, automation, and analytics.</p>
-</div>
-
-<div class="card">
-<h3>Guest Lecturer - Koshy's</h3>
-<p>Taught Java, DBMS, Cloud Computing, R.</p>
-</div>
-
-<div class="card">
-<h3>Full Stack Intern - Unizen</h3>
-<p>Developed web applications using HTML, CSS, JS.</p>
-</div>
+<div class="card"><h3>Data Analyst - Diya Ghar</h3></div>
+<div class="card"><h3>Guest Lecturer - Koshy's</h3></div>
+<div class="card"><h3>Full Stack Intern - Unizen</h3></div>
 </section>
 
 <!-- PROJECTS -->
@@ -211,38 +188,20 @@ button {
 
 <div class="card">
 <h3>📊 Student Performance Analysis</h3>
-<p>
-• Statistical analysis & hypothesis testing <br>
-• Data visualization using Python <br>
-• Insights for academic improvement
-</p>
 <a href="https://github.com/Jingi2103/Student-performance-analysis" target="_blank">
-<button>View GitHub</button>
-</a>
+<button>View GitHub</button></a>
 </div>
 
 <div class="card">
-<h3>🏏 Asia Cup Cricket Prediction</h3>
-<p>
-• Monte Carlo simulation model <br>
-• Probability-based predictions <br>
-• Sports analytics project
-</p>
+<h3>🏏 Cricket Prediction Model</h3>
 <a href="https://github.com/Jingi2103/Asia-Cup-2025---Cricket-Analysis" target="_blank">
-<button>View GitHub</button>
-</a>
+<button>View GitHub</button></a>
 </div>
 
 <div class="card">
 <h3>🤟 ISL Detection System</h3>
-<p>
-• Real-time gesture recognition <br>
-• OpenCV + LSTM model <br>
-• Converts sign to text
-</p>
 <a href="https://github.com/Jingi2103/Indian-Sign-Language-to-Text-Conversion-A-Real-Time-Web-App" target="_blank">
-<button>View GitHub</button>
-</a>
+<button>View GitHub</button></a>
 </div>
 
 </section>
@@ -250,12 +209,10 @@ button {
 <!-- SKILLS -->
 <section>
 <h2>🛠 Skills</h2>
-<div class="card">
-<p>Python | SQL | Power BI | Excel | R | Pandas | NumPy</p>
-</div>
+<div class="card">Python | SQL | Power BI | Excel | R</div>
 </section>
 
-<!-- CHATBOX -->
+<!-- CHAT -->
 <div id="chatbot">
 <div class="chat-header">Jino 🤖</div>
 <div id="chat-body"></div>
@@ -263,26 +220,37 @@ button {
 </div>
 
 <script>
-// ROLE TYPING EFFECT
+// FIXED ROLE TYPING (NO BUG)
 const roles = ["Data Analyst 📊","Power BI Developer 📈","Data Engineer ⚙️"];
-let i=0,j=0,current="",del=false;
 
-function type(){
-current=roles[i];
-if(!del){
-document.getElementById("role-text").innerHTML=current.substring(0,j++);
-if(j>current.length){del=true;setTimeout(type,1000);return;}
-}else{
-document.getElementById("role-text").innerHTML=current.substring(0,j--);
-if(j<0){del=false;i=(i+1)%roles.length;}
+let i = 0, j = 0;
+let isDeleting = false;
+
+function type() {
+    let current = roles[i];
+
+    if (!isDeleting) {
+        document.getElementById("role-text").innerHTML = current.substring(0, j);
+        j++;
+        if (j > current.length) {
+            isDeleting = true;
+            setTimeout(type, 1200);
+            return;
+        }
+    } else {
+        document.getElementById("role-text").innerHTML = current.substring(0, j);
+        j--;
+        if (j < 0) {
+            isDeleting = false;
+            i = (i + 1) % roles.length;
+            j = 0;
+        }
+    }
+
+    setTimeout(type, isDeleting ? 50 : 100);
 }
-setTimeout(type,del?50:100);
-}
+
 type();
-
-// IMAGE
-function openImage(){document.getElementById("imageModal").style.display="block";}
-function closeImage(){document.getElementById("imageModal").style.display="none";}
 
 // CHATBOT
 function toggleChat(){
@@ -298,11 +266,10 @@ if(!msg) return;
 add("You",msg);
 input.value="";
 
-let chat=document.getElementById("chat-body");
 let typing=document.createElement("div");
 typing.className="typing";
 typing.innerText="Jino is typing...";
-chat.appendChild(typing);
+document.getElementById("chat-body").appendChild(typing);
 
 setTimeout(()=>{
 typing.remove();
@@ -319,7 +286,7 @@ document.getElementById("chat-body").appendChild(div);
 
 function getReply(input){
 if(input.includes("hi")) return "Hey! 👋 Ask me anything about Jino.";
-if(input.includes("education")) return "MSc Data Science & BCA background.";
+if(input.includes("education")) return "MSc Data Science & BCA.";
 if(input.includes("skills")) return "Python, SQL, Power BI.";
 return "Ask about projects or experience 🙂";
 }
