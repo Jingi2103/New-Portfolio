@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jino Mathew | Data Analyst</title>
+
+<style>
+body { margin:0; font-family:Arial; background:#0f172a; color:white; }
+
+nav { padding:20px; }
+
+/* HERO */
+.hero {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:40px;
+    padding:100px 20px;
+    flex-wrap:wrap;
+}
+
+.profile {
+    width:150px;
+    border-radius:50%;
+    border:3px solid #22c55e;
+    cursor:pointer;
+}
+
+.hero-text { max-width:500px; }
+
+button {
+    padding:10px 20px;
+    background:#22c55e;
+    border:none;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.socials button { margin:5px; background:#334155; }
+
+.card {
+    background:#1e293b;
+    margin:20px;
+    padding:20px;
+    border-radius:10px;
+}
+
+/* IMAGE MODAL */
+#imageModal {
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+}
+
+#imageModal img {
+    display:block;
+    margin:auto;
+    width:300px;
+    margin-top:100px;
+}
+
+/* CHATBOT */
+#chatbot-container {
+    position:fixed;
+    top:20px;
+    right:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+#chatbot-label {
+    background:#1e293b;
+    padding:8px;
+    border-radius:10px;
+}
+
+#chatbot-icon {
+    background:#22c55e;
+    padding:15px;
+    border-radius:50%;
+    cursor:pointer;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%{box-shadow:0 0 10px #22c55e;}
+    50%{box-shadow:0 0 25px #22c55e;}
+    100%{box-shadow:0 0 10px #22c55e;}
+}
+
+/* CHATBOX */
+#chatbot {
+    position:fixed;
+    top:80px;
+    right:20px;
+    width:320px;
+    background:#1e293b;
+    display:none;
+    flex-direction:column;
+}
+
+.chat-header {
+    background:#22c55e;
+    padding:10px;
+}
+
+#chat-body {
+    height:320px;
+    padding:15px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    overflow-y:auto;
+}
+
+/* CHAT BUBBLES */
+.message {
+    max-width:75%;
+    padding:10px;
+    border-radius:15px;
+}
+
+.user {
+    align-self:flex-end;
+    background:#22c55e;
+}
+
+.bot {
+    align-self:flex-start;
+    background:#334155;
+}
+
+.typing {
+    font-style:italic;
+    color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<nav><h2>Jino Mathew</h2></nav>
+
+<!-- CHATBOT -->
+<div id="chatbot-container">
+<div id="chatbot-label">
+💬 Ask me anything <br>
+<span style="font-size:10px;color:#94a3b8;">Chat with Jino's AI</span>
+</div>
+<div id="chatbot-icon" onclick="toggleChat()">🤖</div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+<img src="profile.jpg" class="profile" onclick="openImage()">
+
+<div class="hero-text">
+<h1>Data Analyst 📊</h1>
+<p>Data Analyst with strong background in M&E, dashboards, and analytics.</p>
+
+<div class="socials">
+<a href="https://github.com/Jingi2103" target="_blank"><button>GitHub</button></a>
+<a href="https://www.linkedin.com/in/jino-mathew-2a6177221/" target="_blank"><button>LinkedIn</button></a>
+<a href="https://medium.com/@jinomathew2105" target="_blank"><button>Medium</button></a>
+</div>
+
+<br>
+<a href="resume.pdf" download><button>Download Resume 📄</button></a>
+</div>
+</section>
+
+<!-- IMAGE MODAL -->
+<div id="imageModal" onclick="closeImage()">
+<img src="profile.jpg">
+</div>
+
+<!-- EDUCATION -->
+<section>
+<h2>🎓 Education</h2>
+<div class="card"><h3>MSc Data Science</h3><p>Christ University (2022–2024)</p></div>
+<div class="card"><h3>BCA</h3><p>Kristu Jayanti College (2019–2022)</p></div>
+</section>
+
+<!-- EXPERIENCE -->
+<section>
+<h2>💼 Experience</h2>
+<div class="card">
+<h3>Data Analyst - Diya Ghar</h3>
+<p>Power BI dashboards, automation, and analytics.</p>
+</div>
+
+<div class="card">
+<h3>Guest Lecturer - Koshy's</h3>
+<p>Taught Java, DBMS, Cloud Computing, R.</p>
+</div>
+
+<div class="card">
+<h3>Full Stack Intern - Unizen</h3>
+<p>Developed web applications using HTML, CSS, JS.</p>
+</div>
+</section>
+
+<!-- PROJECTS -->
+<section>
+<h2>🚀 Projects</h2>
+
+<div class="card">
+<h3>📊 Student Performance Analysis</h3>
+<p>
+• Statistical analysis & hypothesis testing <br>
+• Data visualization using Python <br>
+• Insights for academic improvement
+</p>
+<a href="https://github.com/Jingi2103/Student-performance-analysis" target="_blank">
+<button>View GitHub</button>
+</a>
+</div>
+
+<div class="card">
+<h3>🏏 Asia Cup Cricket Prediction</h3>
+<p>
+• Monte Carlo simulation model <br>
+• Probability-based predictions <br>
+• Sports analytics project
+</p>
+<a href="https://github.com/Jingi2103/Asia-Cup-2025---Cricket-Analysis" target="_blank">
+<button>View GitHub</button>
+</a>
+</div>
+
+<div class="card">
+<h3>🤟 ISL Detection System</h3>
+<p>
+• Real-time gesture recognition <br>
+• OpenCV + LSTM model <br>
+• Converts sign to text
+</p>
+<a href="https://github.com/Jingi2103/Indian-Sign-Language-to-Text-Conversion-A-Real-Time-Web-App" target="_blank">
+<button>View GitHub</button>
+</a>
+</div>
+
+</section>
+
+<!-- SKILLS -->
+<section>
+<h2>🛠 Skills</h2>
+<div class="card">
+<p>Python | SQL | Power BI | Excel | R | Pandas | NumPy</p>
+</div>
+</section>
+
+<!-- CHATBOX -->
+<div id="chatbot">
+<div class="chat-header">Jino 🤖</div>
+<div id="chat-body"></div>
+<input id="user-input" placeholder="Ask me..." onkeydown="if(event.key==='Enter') sendMessage()">
+</div>
+
+<script>
+// IMAGE
+function openImage(){document.getElementById("imageModal").style.display="block";}
+function closeImage(){document.getElementById("imageModal").style.display="none";}
+
+// CHAT TOGGLE
+function toggleChat(){
+let c=document.getElementById("chatbot");
+c.style.display=c.style.display==="flex"?"none":"flex";
+}
+
+// SEND MESSAGE
+function sendMessage(){
+let input=document.getElementById("user-input");
+let msg=input.value.toLowerCase();
+if(!msg) return;
+
+add("You",msg);
+input.value="";
+
+// typing effect
+let chat=document.getElementById("chat-body");
+let typing=document.createElement("div");
+typing.className="typing";
+typing.innerText="Jino is typing...";
+chat.appendChild(typing);
+
+setTimeout(()=>{
+typing.remove();
+add("Jino",getReply(msg));
+},1200);
+}
+
+// ADD MESSAGE
+function add(sender,text){
+let div=document.createElement("div");
+div.className="message " + (sender==="You"?"user":"bot");
+div.innerHTML=text;
+document.getElementById("chat-body").appendChild(div);
+}
+
+// CHATBOT LOGIC
+function getReply(input){
+
+if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
+return "Hey! 👋 Glad you’re here. Feel free to ask me anything about Jino — his education, experience, skills, projects, contact details, or even if he’s available for hiring.";
+}
+
+if (input.includes("education")) {
+return "Jino completed his MSc in Data Science from Christ University and his BCA from Kristu Jayanti College.";
+}
+
+if (input.includes("experience")) {
+return "He is currently a Data Analyst at Diya Ghar and has also worked as a lecturer and a full stack developer intern.";
+}
+
+if (input.includes("skills")) {
+return "His core skills include Python, SQL, Power BI, Excel, and R.";
+}
+
+if (input.includes("project")) {
+return "He has worked on data analysis, simulation models, and machine learning-based projects like ISL detection.";
+}
+
+if (input.includes("contact")) {
+return "You can reach him at jinomathew2105@gmail.com or via LinkedIn.";
+}
+
+if (input.includes("hire")) {
+return "Yes, he is open to Data Analyst roles. Feel free to connect!";
+}
+
+return "Ask me about education, experience, skills, or projects 🙂";
+}
+</script>
+
+</body>
+</html>
