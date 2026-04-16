@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jino Mathew | Data Analyst</title>
+<title>Jino Mathew M J | Data Analyst</title>
 
 <style>
 body { margin:0; font-family:Arial; background:#0f172a; color:white; }
@@ -160,7 +160,7 @@ button {
 <img src="profile.jpg" class="profile" onclick="openImage()">
 
 <div class="hero-text">
-<h1>Data Analyst 📊</h1>
+<h1 id="role-text"></h1>
 <p>Data Analyst with strong background in M&E, dashboards, and analytics.</p>
 
 <div class="socials">
@@ -263,17 +263,33 @@ button {
 </div>
 
 <script>
+// ROLE TYPING EFFECT
+const roles = ["Data Analyst 📊","Power BI Developer 📈","Data Engineer ⚙️"];
+let i=0,j=0,current="",del=false;
+
+function type(){
+current=roles[i];
+if(!del){
+document.getElementById("role-text").innerHTML=current.substring(0,j++);
+if(j>current.length){del=true;setTimeout(type,1000);return;}
+}else{
+document.getElementById("role-text").innerHTML=current.substring(0,j--);
+if(j<0){del=false;i=(i+1)%roles.length;}
+}
+setTimeout(type,del?50:100);
+}
+type();
+
 // IMAGE
 function openImage(){document.getElementById("imageModal").style.display="block";}
 function closeImage(){document.getElementById("imageModal").style.display="none";}
 
-// CHAT TOGGLE
+// CHATBOT
 function toggleChat(){
 let c=document.getElementById("chatbot");
 c.style.display=c.style.display==="flex"?"none":"flex";
 }
 
-// SEND MESSAGE
 function sendMessage(){
 let input=document.getElementById("user-input");
 let msg=input.value.toLowerCase();
@@ -282,7 +298,6 @@ if(!msg) return;
 add("You",msg);
 input.value="";
 
-// typing effect
 let chat=document.getElementById("chat-body");
 let typing=document.createElement("div");
 typing.className="typing";
@@ -295,46 +310,18 @@ add("Jino",getReply(msg));
 },1200);
 }
 
-// ADD MESSAGE
 function add(sender,text){
 let div=document.createElement("div");
-div.className="message " + (sender==="You"?"user":"bot");
+div.className="message "+(sender==="You"?"user":"bot");
 div.innerHTML=text;
 document.getElementById("chat-body").appendChild(div);
 }
 
-// CHATBOT LOGIC
 function getReply(input){
-
-if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
-return "Hey! 👋 Glad you’re here. Feel free to ask me anything about Jino — his education, experience, skills, projects, contact details, or even if he’s available for hiring.";
-}
-
-if (input.includes("education")) {
-return "Jino completed his MSc in Data Science from Christ University and his BCA from Kristu Jayanti College.";
-}
-
-if (input.includes("experience")) {
-return "He is currently a Data Analyst at Diya Ghar and has also worked as a lecturer and a full stack developer intern.";
-}
-
-if (input.includes("skills")) {
-return "His core skills include Python, SQL, Power BI, Excel, and R.";
-}
-
-if (input.includes("project")) {
-return "He has worked on data analysis, simulation models, and machine learning-based projects like ISL detection.";
-}
-
-if (input.includes("contact")) {
-return "You can reach him at jinomathew2105@gmail.com or via LinkedIn.";
-}
-
-if (input.includes("hire")) {
-return "Yes, he is open to Data Analyst roles. Feel free to connect!";
-}
-
-return "Ask me about education, experience, skills, or projects 🙂";
+if(input.includes("hi")) return "Hey! 👋 Ask me anything about Jino.";
+if(input.includes("education")) return "MSc Data Science & BCA background.";
+if(input.includes("skills")) return "Python, SQL, Power BI.";
+return "Ask about projects or experience 🙂";
 }
 </script>
 
