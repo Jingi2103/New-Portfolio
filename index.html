@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jino Mathew M J | Data Analyst</title>
+<title>Jino Mathew M J | Data Professional</title>
 
 <style>
-body { margin:0; font-family:Arial; background:#0f172a; color:white; }
+body { margin:0; font-family: 'Segoe UI', Arial, sans-serif; background:#0f172a; color:white; overflow-x: hidden; scroll-behavior: smooth;}
 
 nav { padding:20px; }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
     display:flex;
     align-items:center;
@@ -20,43 +20,60 @@ nav { padding:20px; }
     flex-wrap:wrap;
 }
 
+/* Updated Profile Image: No Modal, Just Hover */
 .profile {
-    width:150px;
-    height:150px;
+    width:160px;
+    height:160px;
     object-fit: cover;
     border-radius:50%;
-    border:3px solid #22c55e;
-    cursor:pointer;
-    /* Hover Transition */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border:4px solid #22c55e;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
 }
 
 .profile:hover {
-    transform: scale(1.1); /* Zoom effect */
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6); /* Glow effect */
+    transform: scale(1.15); /* Slightly larger zoom */
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.5); /* Glowing effect */
 }
 
-.hero-text { max-width:500px; }
+.hero-text { max-width:550px; }
+
+/* Dynamic Title Transition */
+#changing-role {
+    color: #22c55e;
+    display: inline-block;
+    min-width: 250px;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+}
 
 button {
-    padding:10px 20px;
+    padding:12px 24px;
     background:#22c55e;
     border:none;
     color:white;
     border-radius:10px;
     cursor:pointer;
+    font-weight: bold;
+    transition: background 0.3s;
 }
 
+button:hover { background: #16a34a; }
+
 .socials button { margin:5px; background:#334155; }
+.socials button:hover { background: #475569; }
 
 .card {
     background:#1e293b;
     margin:20px;
-    padding:20px;
-    border-radius:10px;
+    padding:25px;
+    border-radius:12px;
+    border-left: 4px solid transparent;
+    transition: 0.3s;
 }
 
-/* CHATBOT */
+.card:hover { border-left: 4px solid #22c55e; background: #243146; }
+
+/* CHATBOT UI */
 #chatbot-container {
     position:fixed;
     top:20px;
@@ -67,48 +84,42 @@ button {
     z-index: 1000;
 }
 
-#chatbot-label {
-    background:#1e293b;
-    padding:8px;
-    border-radius:10px;
-}
+#chatbot-label { background:#1e293b; padding:10px; border-radius:10px; border: 1px solid #334155; }
 
 #chatbot-icon {
     background:#22c55e;
     padding:15px;
     border-radius:50%;
     cursor:pointer;
-    animation:pulse 1.5s infinite;
+    font-size: 20px;
+    animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0%{box-shadow:0 0 10px #22c55e;}
-    50%{box-shadow:0 0 25px #22c55e;}
-    100%{box-shadow:0 0 10px #22c55e;}
+    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
 }
 
-/* CHATBOX */
 #chatbot {
     position:fixed;
-    top:80px;
+    top:85px;
     right:20px;
     width:320px;
     background:#1e293b;
     display:none;
     flex-direction:column;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     z-index: 1000;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    border: 1px solid #334155;
 }
 
-.chat-header {
-    background:#22c55e;
-    padding:10px;
-    font-weight: bold;
-}
+.chat-header { background:#22c55e; padding:12px; font-weight: bold; }
 
 #chat-body {
-    height:320px;
+    height:350px;
     padding:15px;
     display:flex;
     flex-direction:column;
@@ -116,34 +127,18 @@ button {
     overflow-y:auto;
 }
 
-/* CHAT BUBBLES */
-.message {
-    max-width:75%;
-    padding:10px;
-    border-radius:15px;
-}
-
-.user {
-    align-self:flex-end;
-    background:#22c55e;
-}
-
-.bot {
-    align-self:flex-start;
-    background:#334155;
-}
-
-.typing {
-    font-style:italic;
-    color:#94a3b8;
-}
+.message { max-width:80%; padding:10px 14px; border-radius:15px; font-size: 14px; line-height: 1.4; }
+.user { align-self:flex-end; background:#22c55e; color: white; border-bottom-right-radius: 2px; }
+.bot { align-self:flex-start; background:#334155; border-bottom-left-radius: 2px; }
+.typing { font-style:italic; color:#94a3b8; font-size: 12px; }
 
 #user-input {
-    padding: 10px;
+    padding: 15px;
     border: none;
     outline: none;
-    background: #334155;
+    background: #0f172a;
     color: white;
+    border-top: 1px solid #334155;
 }
 </style>
 </head>
@@ -153,173 +148,107 @@ button {
 <nav><h2>Jino Mathew</h2></nav>
 
 <div id="chatbot-container">
-<div id="chatbot-label">
-💬 Ask me anything <br>
-<span style="font-size:10px;color:#94a3b8;">Chat with Jino's AI</span>
-</div>
-<div id="chatbot-icon" onclick="toggleChat()">🤖</div>
+    <div id="chatbot-label">
+        💬 Chat with Jino's AI
+    </div>
+    <div id="chatbot-icon" onclick="toggleChat()">🤖</div>
 </div>
 
 <section class="hero">
-<img src="profile.jpg" class="profile" alt="Jino Mathew">
+    <img src="profile.jpg" class="profile" alt="Jino Mathew">
 
-<div class="hero-text">
-<h1>Data Analyst 📊</h1>
-<p>Data Analyst with strong background in M&E, dashboards, and analytics.</p>
+    <div class="hero-text">
+        <h1>I'm a <br><span id="changing-role">Data Analyst</span> 📊</h1>
+        <p>Turning complex data into actionable insights through advanced analytics and automation.</p>
 
-<div class="socials">
-<a href="https://github.com/Jingi2103" target="_blank"><button>GitHub</button></a>
-<a href="https://www.linkedin.com/in/jino-mathew-2a6177221/" target="_blank"><button>LinkedIn</button></a>
-<a href="https://medium.com/@jinomathew2105" target="_blank"><button>Medium</button></a>
-</div>
+        <div class="socials">
+            <a href="https://github.com/Jingi2103" target="_blank"><button>GitHub</button></a>
+            <a href="https://www.linkedin.com/in/jino-mathew-2a6177221/" target="_blank"><button>LinkedIn</button></a>
+            <a href="https://medium.com/@jinomathew2105" target="_blank"><button>Medium</button></a>
+        </div>
 
-<br>
-<a href="resume.pdf" download><button>Download Resume 📄</button></a>
-</div>
+        <br>
+        <a href="resume.pdf" download><button>Download Resume 📄</button></a>
+    </div>
 </section>
 
-<section>
-<h2>🎓 Education</h2>
-<div class="card"><h3>MSc Data Science</h3><p>Christ University (2022–2024)</p></div>
-<div class="card"><h3>BCA</h3><p>Kristu Jayanti College (2019–2022)</p></div>
-</section>
-
-<section>
-<h2>💼 Experience</h2>
-<div class="card">
-<h3>Data Analyst - Diya Ghar</h3>
-<p>Power BI dashboards, automation, and analytics.</p>
-</div>
-
-<div class="card">
-<h3>Guest Lecturer - Koshy's</h3>
-<p>Taught Java, DBMS, Cloud Computing, R.</p>
-</div>
-
-<div class="card">
-<h3>Full Stack Intern - Unizen</h3>
-<p>Developed web applications using HTML, CSS, JS.</p>
-</div>
-</section>
-
-<section>
-<h2>🚀 Projects</h2>
-
-<div class="card">
-<h3>📊 Student Performance Analysis</h3>
-<p>
-• Statistical analysis & hypothesis testing <br>
-• Data visualization using Python <br>
-• Insights for academic improvement
-</p>
-<a href="https://github.com/Jingi2103/Student-performance-analysis" target="_blank">
-<button>View GitHub</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🏏 Asia Cup Cricket Prediction</h3>
-<p>
-• Monte Carlo simulation model <br>
-• Probability-based predictions <br>
-• Sports analytics project
-</p>
-<a href="https://github.com/Jingi2103/Asia-Cup-2025---Cricket-Analysis" target="_blank">
-<button>View GitHub</button>
-</a>
-</div>
-
-<div class="card">
-<h3>🤟 ISL Detection System</h3>
-<p>
-• Real-time gesture recognition <br>
-• OpenCV + LSTM model <br>
-• Converts sign to text
-</p>
-<a href="https://github.com/Jingi2103/Indian-Sign-Language-to-Text-Conversion-A-Real-Time-Web-App" target="_blank">
-<button>View GitHub</button>
-</a>
-</div>
-
-</section>
-
-<section>
-<h2>🛠 Skills</h2>
-<div class="card">
-<p>Python | SQL | Power BI | Excel | R | Pandas | NumPy</p>
-</div>
+<section id="education">
+    <h2 style="padding-left: 20px;">🎓 Education</h2>
+    <div class="card"><h3>MSc Data Science</h3><p>Christ University (2022–2024)</p></div>
+    <div class="card"><h3>BCA</h3><p>Kristu Jayanti College (2019–2022)</p></div>
 </section>
 
 <div id="chatbot">
-<div class="chat-header">Jino 🤖</div>
-<div id="chat-body"></div>
-<input id="user-input" placeholder="Ask me..." onkeydown="if(event.key==='Enter') sendMessage()">
+    <div class="chat-header">Jino's Assistant 🤖</div>
+    <div id="chat-body"></div>
+    <input id="user-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendMessage()">
 </div>
 
 <script>
-// CHAT TOGGLE
+// --- 1. DYNAMIC ROLE ROTATION LOGIC ---
+const roles = ["Data Analyst", "Power BI Developer", "Data Engineer"];
+let roleIndex = 0;
+const roleElement = document.getElementById("changing-role");
+
+function rotateRole() {
+    // Fade out and move slightly
+    roleElement.style.opacity = 0;
+    roleElement.style.transform = "translateY(5px)";
+    
+    setTimeout(() => {
+        roleIndex = (roleIndex + 1) % roles.length;
+        roleElement.innerText = roles[roleIndex];
+        
+        // Fade in and move back
+        roleElement.style.opacity = 1;
+        roleElement.style.transform = "translateY(0)";
+    }, 500);
+}
+// Rotate every 3 seconds
+setInterval(rotateRole, 3000);
+
+
+// --- 2. CHATBOT FUNCTIONALITY ---
 function toggleChat(){
-let c=document.getElementById("chatbot");
-c.style.display=c.style.display==="flex"?"none":"flex";
+    let c = document.getElementById("chatbot");
+    c.style.display = (c.style.display === "flex") ? "none" : "flex";
 }
 
-// SEND MESSAGE
 function sendMessage(){
-let input=document.getElementById("user-input");
-let msg=input.value.toLowerCase();
-if(!msg) return;
+    let input = document.getElementById("user-input");
+    let msg = input.value.trim().toLowerCase();
+    if(!msg) return;
 
-add("You",msg);
-input.value="";
+    add("You", input.value);
+    input.value = "";
 
-// typing effect
-let chat=document.getElementById("chat-body");
-let typing=document.createElement("div");
-typing.className="typing";
-typing.innerText="Jino is typing...";
-chat.appendChild(typing);
+    let chat = document.getElementById("chat-body");
+    let typing = document.createElement("div");
+    typing.className = "typing";
+    typing.innerText = "Jino's AI is typing...";
+    chat.appendChild(typing);
 
-setTimeout(()=>{
-typing.remove();
-add("Jino",getReply(msg));
-},1200);
+    setTimeout(() => {
+        typing.remove();
+        add("Jino", getReply(msg));
+    }, 1000);
 }
 
-// ADD MESSAGE
-function add(sender,text){
-let div=document.createElement("div");
-div.className="message " + (sender==="You"?"user":"bot");
-div.innerHTML=text;
-document.getElementById("chat-body").appendChild(div);
-// Auto-scroll to bottom
-let chatBody = document.getElementById("chat-body");
-chatBody.scrollTop = chatBody.scrollHeight;
+function add(sender, text){
+    let div = document.createElement("div");
+    div.className = "message " + (sender === "You" ? "user" : "bot");
+    div.innerHTML = text;
+    let body = document.getElementById("chat-body");
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight; // Auto-scroll
 }
 
-// CHATBOT LOGIC
 function getReply(input){
-if (input.includes("hi") || input.includes("hello") || input.includes("hey")) {
-return "Hey! 👋 Glad you’re here. Feel free to ask me anything about Jino — his education, experience, skills, projects, contact details, or even if he’s available for hiring.";
-}
-if (input.includes("education")) {
-return "Jino completed his MSc in Data Science from Christ University and his BCA from Kristu Jayanti College.";
-}
-if (input.includes("experience")) {
-return "He is currently a Data Analyst at Diya Ghar and has also worked as a lecturer and a full stack developer intern.";
-}
-if (input.includes("skills")) {
-return "His core skills include Python, SQL, Power BI, Excel, and R.";
-}
-if (input.includes("project")) {
-return "He has worked on data analysis, simulation models, and machine learning-based projects like ISL detection.";
-}
-if (input.includes("contact")) {
-return "You can reach him at jinomathew2105@gmail.com or via LinkedIn.";
-}
-if (input.includes("hire")) {
-return "Yes, he is open to Data Analyst roles. Feel free to connect!";
-}
-return "Ask me about education, experience, skills, or projects 🙂";
+    if (input.includes("hi") || input.includes("hello")) return "Hi! 👋 Ask me about Jino's skills, projects, or work history!";
+    if (input.includes("experience")) return "Jino is a Data Analyst at Diya Ghar, with experience in Power BI, automation, and teaching.";
+    if (input.includes("skills")) return "He specializes in Python, SQL, Power BI, Excel, and R.";
+    if (input.includes("hire")) return "Jino is open to new opportunities! Check his LinkedIn or email him.";
+    return "That's interesting! Feel free to ask about his Projects or Education.";
 }
 </script>
 
