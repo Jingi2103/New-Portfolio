@@ -20,7 +20,7 @@ nav { padding:20px; }
     flex-wrap:wrap;
 }
 
-/* Updated Profile Image: No Modal, Just Hover */
+/* Profile Image Hover Effect */
 .profile {
     width:160px;
     height:160px;
@@ -32,18 +32,36 @@ nav { padding:20px; }
 }
 
 .profile:hover {
-    transform: scale(1.15); /* Slightly larger zoom */
-    box-shadow: 0 0 25px rgba(34, 197, 94, 0.5); /* Glowing effect */
+    transform: scale(1.15);
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
 }
 
 .hero-text { max-width:550px; }
 
-/* Dynamic Title Transition */
+/* Typewriter Title Styling */
+.typewriter-container {
+    font-size: 2rem;
+    font-weight: bold;
+    min-height: 1.2em;
+}
+
 #changing-role {
     color: #22c55e;
+}
+
+/* The Blinking Cursor */
+.cursor {
     display: inline-block;
-    min-width: 250px;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+    width: 3px;
+    background-color: #22c55e;
+    margin-left: 5px;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 button {
@@ -60,18 +78,13 @@ button {
 button:hover { background: #16a34a; }
 
 .socials button { margin:5px; background:#334155; }
-.socials button:hover { background: #475569; }
 
 .card {
     background:#1e293b;
     margin:20px;
     padding:25px;
     border-radius:12px;
-    border-left: 4px solid transparent;
-    transition: 0.3s;
 }
-
-.card:hover { border-left: 4px solid #22c55e; background: #243146; }
 
 /* CHATBOT UI */
 #chatbot-container {
@@ -84,14 +97,13 @@ button:hover { background: #16a34a; }
     z-index: 1000;
 }
 
-#chatbot-label { background:#1e293b; padding:10px; border-radius:10px; border: 1px solid #334155; }
+#chatbot-label { background:#1e293b; padding:10px; border-radius:10px; }
 
 #chatbot-icon {
     background:#22c55e;
     padding:15px;
     border-radius:50%;
     cursor:pointer;
-    font-size: 20px;
     animation: pulse 2s infinite;
 }
 
@@ -110,36 +122,18 @@ button:hover { background: #16a34a; }
     display:none;
     flex-direction:column;
     border-radius: 12px;
-    overflow: hidden;
-    z-index: 1000;
     box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-    border: 1px solid #334155;
 }
 
-.chat-header { background:#22c55e; padding:12px; font-weight: bold; }
+.chat-header { background:#22c55e; padding:12px; font-weight: bold; border-radius: 12px 12px 0 0; }
 
-#chat-body {
-    height:350px;
-    padding:15px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    overflow-y:auto;
-}
+#chat-body { height:300px; padding:15px; display:flex; flex-direction:column; gap:10px; overflow-y:auto; }
 
-.message { max-width:80%; padding:10px 14px; border-radius:15px; font-size: 14px; line-height: 1.4; }
-.user { align-self:flex-end; background:#22c55e; color: white; border-bottom-right-radius: 2px; }
-.bot { align-self:flex-start; background:#334155; border-bottom-left-radius: 2px; }
-.typing { font-style:italic; color:#94a3b8; font-size: 12px; }
+.message { max-width:80%; padding:10px 14px; border-radius:15px; font-size: 14px; }
+.user { align-self:flex-end; background:#22c55e; }
+.bot { align-self:flex-start; background:#334155; }
 
-#user-input {
-    padding: 15px;
-    border: none;
-    outline: none;
-    background: #0f172a;
-    color: white;
-    border-top: 1px solid #334155;
-}
+#user-input { padding: 15px; border: none; outline: none; background: #0f172a; color: white; border-top: 1px solid #334155; }
 </style>
 </head>
 
@@ -148,9 +142,7 @@ button:hover { background: #16a34a; }
 <nav><h2>Jino Mathew</h2></nav>
 
 <div id="chatbot-container">
-    <div id="chatbot-label">
-        💬 Chat with Jino's AI
-    </div>
+    <div id="chatbot-label">💬 Chat with Jino's AI</div>
     <div id="chatbot-icon" onclick="toggleChat()">🤖</div>
 </div>
 
@@ -158,21 +150,21 @@ button:hover { background: #16a34a; }
     <img src="profile.jpg" class="profile" alt="Jino Mathew">
 
     <div class="hero-text">
-        <h1>I'm a <br><span id="changing-role">Data Analyst</span> 📊</h1>
+        <div class="typewriter-container">
+            I'm a <span id="changing-role"></span><span class="cursor">&nbsp;</span>
+        </div>
         <p>Turning complex data into actionable insights through advanced analytics and automation.</p>
 
         <div class="socials">
             <a href="https://github.com/Jingi2103" target="_blank"><button>GitHub</button></a>
             <a href="https://www.linkedin.com/in/jino-mathew-2a6177221/" target="_blank"><button>LinkedIn</button></a>
-            <a href="https://medium.com/@jinomathew2105" target="_blank"><button>Medium</button></a>
         </div>
-
         <br>
         <a href="resume.pdf" download><button>Download Resume 📄</button></a>
     </div>
 </section>
 
-<section id="education">
+<section>
     <h2 style="padding-left: 20px;">🎓 Education</h2>
     <div class="card"><h3>MSc Data Science</h3><p>Christ University (2022–2024)</p></div>
     <div class="card"><h3>BCA</h3><p>Kristu Jayanti College (2019–2022)</p></div>
@@ -185,30 +177,50 @@ button:hover { background: #16a34a; }
 </div>
 
 <script>
-// --- 1. DYNAMIC ROLE ROTATION LOGIC ---
+// --- TYPEWRITER LOGIC ---
 const roles = ["Data Analyst", "Power BI Developer", "Data Engineer"];
-let roleIndex = 0;
+let roleIdx = 0;
+let charIdx = 0;
+let isDeleting = false;
+const speed = 150; // Typing speed
+const waitTime = 2000; // Time text stays typed
 const roleElement = document.getElementById("changing-role");
 
-function rotateRole() {
-    // Fade out and move slightly
-    roleElement.style.opacity = 0;
-    roleElement.style.transform = "translateY(5px)";
+function type() {
+    const currentFullText = roles[roleIdx];
     
-    setTimeout(() => {
-        roleIndex = (roleIndex + 1) % roles.length;
-        roleElement.innerText = roles[roleIndex];
-        
-        // Fade in and move back
-        roleElement.style.opacity = 1;
-        roleElement.style.transform = "translateY(0)";
-    }, 500);
+    if (isDeleting) {
+        // Remove a character
+        roleElement.innerText = currentFullText.substring(0, charIdx - 1);
+        charIdx--;
+    } else {
+        // Add a character
+        roleElement.innerText = currentFullText.substring(0, charIdx + 1);
+        charIdx++;
+    }
+
+    let typeSpeed = speed;
+    if (isDeleting) { typeSpeed /= 2; } // Deleting is faster
+
+    if (!isDeleting && charIdx === currentFullText.length) {
+        // Text is fully typed, wait before deleting
+        isDeleting = true;
+        typeSpeed = waitTime;
+    } else if (isDeleting && charIdx === 0) {
+        // Text is fully deleted, move to next role
+        isDeleting = false;
+        roleIdx = (roleIdx + 1) % roles.length;
+        typeSpeed = 500;
+    }
+
+    setTimeout(type, typeSpeed);
 }
-// Rotate every 3 seconds
-setInterval(rotateRole, 3000);
+
+// Start the animation
+document.addEventListener('DOMContentLoaded', type);
 
 
-// --- 2. CHATBOT FUNCTIONALITY ---
+// --- CHATBOT LOGIC ---
 function toggleChat(){
     let c = document.getElementById("chatbot");
     c.style.display = (c.style.display === "flex") ? "none" : "flex";
@@ -222,16 +234,9 @@ function sendMessage(){
     add("You", input.value);
     input.value = "";
 
-    let chat = document.getElementById("chat-body");
-    let typing = document.createElement("div");
-    typing.className = "typing";
-    typing.innerText = "Jino's AI is typing...";
-    chat.appendChild(typing);
-
     setTimeout(() => {
-        typing.remove();
         add("Jino", getReply(msg));
-    }, 1000);
+    }, 600);
 }
 
 function add(sender, text){
@@ -240,15 +245,13 @@ function add(sender, text){
     div.innerHTML = text;
     let body = document.getElementById("chat-body");
     body.appendChild(div);
-    body.scrollTop = body.scrollHeight; // Auto-scroll
+    body.scrollTop = body.scrollHeight;
 }
 
 function getReply(input){
-    if (input.includes("hi") || input.includes("hello")) return "Hi! 👋 Ask me about Jino's skills, projects, or work history!";
-    if (input.includes("experience")) return "Jino is a Data Analyst at Diya Ghar, with experience in Power BI, automation, and teaching.";
-    if (input.includes("skills")) return "He specializes in Python, SQL, Power BI, Excel, and R.";
-    if (input.includes("hire")) return "Jino is open to new opportunities! Check his LinkedIn or email him.";
-    return "That's interesting! Feel free to ask about his Projects or Education.";
+    if (input.includes("hi")) return "Hi! 👋 Ask me about Jino's skills or projects!";
+    if (input.includes("skills")) return "He knows Python, SQL, Power BI, and R.";
+    return "I'm Jino's AI. Feel free to reach out via LinkedIn!";
 }
 </script>
 
