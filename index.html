@@ -391,15 +391,39 @@
             document.getElementById("chat-body").appendChild(div);
         }
 
-        function getReply(input) {
-            if (input.includes("hi") || input.includes("hello")) return "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, or help you get in touch with him.";
-            if (input.includes("education")) return "Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.";
-            if (input.includes("experience")) return "Currently He is a Data Analyst at Diya Ghar, focused on Power BI and process automation. He was also working as a guest Lecturer in Koshy's group of Institution and completed an Internship as a Full stack developer from Unizen Technologies pvt ltd.";
-            if (input.includes("skills")) return "He is proficient in Python, SQL, Power BI, Excel, and R.";
-            if (input.includes("contact")) return "Email him at jinomathew2105@gmail.com or find him on LinkedIn!";
-            if (input.includes("project")) return "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia cup 2025, and an ISL-to-Text Conversion System. Explore the details via the links below:"
-            return "I'm not sure about that. Try asking about his education, skills, or projects!";
+       function getReply(input) {
+    // Preprocess input: lowercase and clean
+    let text = input.toLowerCase().trim();
+    
+    // Define intents as regex patterns with multiple variations (using | for OR)
+    const intents = {
+        greeting: /hi|hello|hey|good morning|good evening|sup|yo/i,
+        education: /education|degree|college|university|msc|master|bca|bachelor|study|studies|qualification|background|academic/i,
+        experience: /experience|work|job|career|employed|role|position|internship|lecturer|data analyst|diya ghar|koshy|unizen/i,
+        skills: /skills|skill|proficient|know|expert|python|sql|power bi|excel|r|tools|technologies/i,
+        contact: /contact|email|reach|connect|linkedin|message|talk|phone|reach out/i,
+        project: /project|projects|work|analysis|student performance|cricket|asia cup|isl|text conversion/i
+    };
+    
+    // Responses (keep your originals, add more if needed)
+    const responses = {
+        greeting: "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, or help you get in touch with him.",
+        education: "Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.",
+        experience: "Currently He is a Data Analyst at Diya Ghar, focused on Power BI and process automation. He was also working as a guest Lecturer in Koshy's group of Institution and completed an Internship as a Full stack developer from Unizen Technologies pvt ltd.",
+        skills: "He is proficient in Python, SQL, Power BI, Excel, and R.",
+        contact: "Email him at [jinomathew2105@gmail.com](mailto:jinomathew2105@gmail.com) or find him on LinkedIn!",
+        project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia cup 2025, and an ISL-to-Text Conversion System. Explore the details via the links below:"
+    };
+    
+    // Find matching intent
+    for (let intent in intents) {
+        if (intents[intent].test(text)) {
+            return responses[intent];
         }
+    }
+    
+    return "I'm not sure about that. Try asking about his education, skills, projects, experience, or contact!";
+}
     </script>
 </body>
 </html>
