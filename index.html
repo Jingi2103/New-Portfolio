@@ -397,7 +397,7 @@
     
 // Define intents as regex patterns with multiple variations (using | for OR)
 const intents = {
-  purpose: /\b(purpse|This|for|use)\b/i,
+  purpose: /\b(purpose|this|for|use)\b/i,
   greeting: /\b(hi|hello|hey|good morning|good evening|sup|yo|bro)\b/i,
   education_year: /\b(year|passing year|graduated|completion|finished|batch|admission|joined|started|duration|timeline|when|date)\b/i,
   education_marks: /\b(marks|percentage|cgpa|gpa|grade|score|result|performance|division|first class|distinction|aggregate)\b/i,
@@ -415,7 +415,6 @@ const intents = {
   end: /\b(Thankyou|Thanks|cya|see you|Bye)\b/i,
 };
 
-// Responses (keep your originals, add more if needed)
 const responses = {
   purpose: "Am here to help you know more about Jino and his professional details. Feel free to ask me about his work experience, educational qualification, skillset, projects or even his contact details.",
   greeting: "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, or help you get in touch with him.",
@@ -435,11 +434,10 @@ const responses = {
   end: "Take care, see you soon :)",
 };
 
-// Classify intent with score‑based selection (prevents wrong intent)
 function classifyIntent(text) {
   const clean = text
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/[^a-z0-9\s]/g, " ")     // removed extra backslashes
     .replace(/\s+/g, " ")
     .trim();
 
@@ -447,7 +445,7 @@ function classifyIntent(text) {
   let bestScore = 0;
 
   for (const [intent, pattern] of Object.entries(intents)) {
-    const matches = clean.match(new RegExp(pattern.source, "gi"));
+    const matches = clean.match(pattern);   // pattern is already a RegExp
     const score = matches ? matches.length : 0;
 
     if (score > bestScore) {
@@ -459,7 +457,6 @@ function classifyIntent(text) {
   return bestScore === 0 ? "fallback" : bestIntent;
 }
 
-// Process user message and return response
 function getResponse(text) {
   const intent = classifyIntent(text);
 
