@@ -397,22 +397,44 @@
     
     // Define intents as regex patterns with multiple variations (using | for OR)
     const intents = {
+        purpose: /purpse|This|for|use/i,
         greeting: /hi|hello|hey|good morning|good evening|sup|yo|bro/i,
-        education: /education|degree|college|university|msc|master|bca|bachelor|study|studies|qualification|background|academic/i,
+        education_year: /year|passing year|graduated|completion|finished|batch|admission|joined|started|duration|timeline|when|date/i,
+        education_marks: /marks|percentage|cgpa|gpa|grade|score|result|performance|division|first class|distinction|aggregate/i,
+        education_degree: /degree|college|university|msc|master|ma|mba|phd|bca|bachelor|btech|be|bsc|ba|diploma|course|major/i,
+        education_general: /education|qualification|background|academic|studies|cgpa|school|12th|10th/i,
         experience: /experience|work|job|career|employed|role|position|internship|lecturer|data analyst|diya ghar|koshy|unizen/i,
         skills: /skills|skill|proficient|know|expert|python|sql|power bi|excel|r|tools|technologies/i,
-        contact: /contact|email|reach|connect|linkedin|message|talk|phone|reach|call| out/i,
-        project: /project|projects|work|analysis|student performance|cricket|asia cup|isl|text conversion/i
+        contact_email: /email|gmail|outlook|mail|id|address|write to/i,
+        contact_linkedin: /linkedin|profile|in|connect|add|follow/i,
+        contact_phone: /phone|mobile|number|call|whatsapp|contact number/i,
+        contact_portfolio: /portfolio|personal site|personal website|showcase|work samples|projects page/i
+        contact_github: /github|git|repo|repository|code|profile\.github|github\.com/i
+        contact_medium: /medium|medium\.com|article|blog post|writing|medium profile/i
+        contact_general: /contact|reach|message|talk|dm|chat|ping/i,
+        project: /project|projects|work|analysis|student performance|cricket|asia cup|isl|text conversion/i,
+        end:/Thankyou|Thanks|cya|see you|Bye/i
     };
     
     // Responses (keep your originals, add more if needed)
     const responses = {
+        purpose: "Am here to help you know more about Jino and his professional details. Feel free to ask me about his work experience, educational qualification, skillset, projects or even his contact details.",
         greeting: "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, or help you get in touch with him.",
-        education: "Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.",
+        education_year:"Jino completed his Masters in data science in 2022 and completed his Bachelors in 2019 without any year gaps inbetween.",
+        education_marks:"Ohh ooh ... Jino might not want to reveal it .. Haha! :)",
+        education_degree: "Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.",
+        education_general:"Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.",
         experience: "Currently He is a Data Analyst at Diya Ghar, focused on Power BI and process automation. He was also working as a guest Lecturer in Koshy's group of Institution and completed an Internship as a Full stack developer from Unizen Technologies pvt ltd.",
         skills: "He is proficient in Python, SQL, Power BI, Excel, and R.",
-        contact: "Email him at jinomathew2105@gmail.com or find him on LinkedIn!",
-        project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia cup 2025, and an ISL-to-Text Conversion System. Explore the details via the links below:"
+        contact_email:"Email him at jinomathew2105@gmail.com or find him on LinkedIn!",
+        contact_linkdin:"https://www.linkedin.com/in/jino-mathew-2a6177221/?skipRedirect=true",
+        contact_phone:"9844962549.",
+        contact_portfolio:"https://jingi2103.github.io/New-Portfolio/",
+        contact_github:"https://github.com/Jingi2103",
+        contact_medium:"https://medium.com/@jinomathew2105",
+        contact_general: "Email him at jinomathew2105@gmail.com or find him on LinkedIn!",
+        project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia cup 2025, and an ISL-to-Text Conversion System. Explore the details via the links below:",
+        end:"Take care see you soon :)"
     };
     
     // Find matching intent
