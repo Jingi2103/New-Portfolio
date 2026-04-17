@@ -61,7 +61,7 @@
 
         button {
             padding: 12px 24px;
-            background: var(--accent);
+            background: var(--card-bg);
             border: none;
             color: white;
             font-weight: bold;
@@ -167,7 +167,7 @@
         }
 
         #chatbot-icon {
-            background: linear-gradient(135deg, #1f2937, #4b5563);
+            background: var(--accent);
             font-size: 24px;
             width: 55px;
             height: 55px;
@@ -337,7 +337,7 @@
     <script>
         // TYPEWRITER LOGIC
         const textElement = document.getElementById("typewriter");
-        const phrases = ["Data Analyst📊", "Power BI Developer📈", "Data Engineer⚙️"];
+        const phrases = ["Data Analyst", "Power BI Developer", "Data Engineer"];
         let phraseIndex = 0;
         let characterIndex = 0;
         let isDeleting = false;
