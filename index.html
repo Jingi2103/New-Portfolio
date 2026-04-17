@@ -357,45 +357,44 @@
         window.onload = type;
 
         // CHAT LOGIC
-        function toggleChat() {
-            let c = document.getElementById("chatbot");
-            c.style.display = (c.style.display === "flex") ? "none" : "flex";
-        }
+       // CHAT LOGIC (keep toggleChat, sendMessage, add as they are)
 
-        function sendMessage() {
-            let input = document.getElementById("user-input");
-            let msg = input.value.trim().toLowerCase();
-            if (!msg) return;
+function toggleChat() {
+  let c = document.getElementById("chatbot");
+  c.style.display = (c.style.display === "flex") ? "none" : "flex";
+}
 
-            add("You", input.value);
-            input.value = "";
+function sendMessage() {
+  let input = document.getElementById("user-input");
+  let msg = input.value.trim();
+  if (!msg) return;
 
-            let chat = document.getElementById("chat-body");
-            let typing = document.createElement("div");
-            typing.className = "message bot";
-            typing.innerText = "...";
-            chat.appendChild(typing);
-            chat.scrollTop = chat.scrollHeight;
+  add("You", input.value);
+  input.value = "";
 
-            setTimeout(() => {
-                typing.remove();
-                add("Jino", getReply(msg));
-                chat.scrollTop = chat.scrollHeight;
-            }, 800);
-        }
+  let chat = document.getElementById("chat-body");
+  let typing = document.createElement("div");
+  typing.className = "message bot";
+  typing.innerText = "...";
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
 
-        function add(sender, text) {
-            let div = document.createElement("div");
-            div.className = "message " + (sender === "You" ? "user" : "bot");
-            div.innerHTML = text;
-            document.getElementById("chat-body").appendChild(div);
-        }
+  setTimeout(() => {
+    typing.remove();
+    add("Jino", getReply(msg));
+    chat.scrollTop = chat.scrollHeight;
+  }, 800);
+}
 
-       function getReply(input) {
-    // Preprocess input: lowercase and clean
-    let text = input.toLowerCase().trim();
-    
-// Define intents as regex patterns with multiple variations (using | for OR)
+function add(sender, text) {
+  let div = document.createElement("div");
+  div.className = "message " + (sender === "You" ? "user" : "bot");
+  div.innerHTML = text;
+  document.getElementById("chat-body").appendChild(div);
+}
+
+// ========= FIXED BOT LOGIC =========
+
 const intents = {
   purpose: /\b(purpose|this|for|use)\b/i,
   greeting: /\b(hi|hello|hey|good morning|good evening|sup|yo|bro)\b/i,
@@ -418,26 +417,26 @@ const intents = {
 const responses = {
   purpose: "Am here to help you know more about Jino and his professional details. Feel free to ask me about his work experience, educational qualification, skillset, projects or even his contact details.",
   greeting: "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, or help you get in touch with him.",
-  education_year: "Jino completed his Masters in data science in 2022 and completed his Bachelors in 2019 without any year gaps inbetween.",
+  education_year: "Jino completed his Masters in Data Science in 2022 and completed his Bachelors in 2019 without any year gaps in between.",
   education_marks: "Ohh ooh ... Jino might not want to reveal it .. Haha! :)",
   education_degree: "Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.",
-  experience: "Currently He is a Data Analyst at Diya Ghar, focused on Power BI and process automation. He was also working as a guest Lecturer in Koshy's group of Institution and completed an Internship as a Full stack developer from Unizen Technologies pvt ltd.",
+  experience: "Currently he is a Data Analyst at Diya Ghar, focused on Power BI and process automation. He was also working as a guest Lecturer in Koshy's Group of Institutions and completed an Internship as a Full Stack Developer from Unizen Technologies Pvt Ltd.",
   skills: "He is proficient in Python, SQL, Power BI, Excel, and R.",
-  contact_email: "Email him at [jinomathew2105@gmail.com](mailto:jinomathew2105@gmail.com) or find him on LinkedIn!",
-  contact_linkedin: "https://www.linkedin.com/in/jino-mathew-2a6177221/",
-  contact_phone: "Sorry, I can't do that. If needed I can provide you with his website or LinkedIn links :)",
-  contact_portfolio: "https://jingi2103.github.io/New-Portfolio/",
-  contact_github: "https://github.com/Jingi2103",
-  contact_medium: "https://medium.com/@jinomathew2105",
-  contact_general: "Email him at [jinomathew2105@gmail.com](mailto:jinomathew2105@gmail.com) or find him on LinkedIn!",
-  project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia cup 2025, and an ISL-to-Text Conversion System. Explore the details via the links below:",
+  contact_email: "Email him at <a href=\"mailto:jinomathew2105@gmail.com\" target=\"_blank\">jinomathew2105@gmail.com</a> or find him on LinkedIn!",
+  contact_linkedin: "<a href=\"https://www.linkedin.com/in/jino-mathew-2a6177221/\" target=\"_blank\">LinkedIn profile</a>",
+  contact_phone: "Sorry, I can't do that. If needed, I can provide you with his website or LinkedIn links :)",
+  contact_portfolio: "<a href=\"https://jingi2103.github.io/New-Portfolio/\" target=\"_blank\">Portfolio</a>",
+  contact_github: "<a href=\"https://github.com/Jingi2103\" target=\"_blank\">GitHub</a>",
+  contact_medium: "<a href=\"https://medium.com/@jinomathew2105\" target=\"_blank\">Medium</a>",
+  contact_general: "Email him at <a href=\"mailto:jinomathew2105@gmail.com\" target=\"_blank\">jinomathew2105@gmail.com</a> or find him on LinkedIn!",
+  project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia Cup 2025, and an ISL‑to‑Text Conversion System. Explore the details via the links below.",
   end: "Take care, see you soon :)",
 };
 
 function classifyIntent(text) {
   const clean = text
     .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")     // removed extra backslashes
+    .replace(/[^a-z0-9\s]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
@@ -445,7 +444,7 @@ function classifyIntent(text) {
   let bestScore = 0;
 
   for (const [intent, pattern] of Object.entries(intents)) {
-    const matches = clean.match(pattern);   // pattern is already a RegExp
+    const matches = clean.match(pattern);
     const score = matches ? matches.length : 0;
 
     if (score > bestScore) {
@@ -457,15 +456,15 @@ function classifyIntent(text) {
   return bestScore === 0 ? "fallback" : bestIntent;
 }
 
-function getResponse(text) {
-  const intent = classifyIntent(text);
+function getReply(input) {
+  const intent = classifyIntent(input);
 
   if (intent !== "fallback" && responses[intent]) {
     return responses[intent];
   }
 
   return "I'm not sure about that. Try asking about his education, skills, projects, experience, or contact!";
-}
-    </script>
+}    
+</script>
 </body>
 </html>
