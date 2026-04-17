@@ -436,39 +436,6 @@
         project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia cup 2025, and an ISL-to-Text Conversion System. Explore the details via the links below:",
         end:"Take care see you soon :)"
     };
-           // Simplified function for ONLY these 5 links
-function getResponse(query) {
-    const lowerQuery = query.toLowerCase().trim();
-    
-    const keyMap = {
-        'linkdin': 'contact_linkdin',
-        'portfolio': 'contact_portfolio',
-        'github': 'contact_github',
-        'medium': 'contact_medium',
-        'email': 'contact_email'
-    };
-    
-    const key = keyMap[lowerQuery];
-    let response = key ? responses[key] : responses.contact_general;
-    
-    // Convert Markdown to clickable HTML
-    response = response.replace(
-        /(\[[^\]]+\]\([^)]+\))/g,
-        (match) => {
-            const [, text, url] = match.match(/\[([^\]]+)\]\(([^)]+)\)/);
-            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
-        }
-    );
-    
-    return response;
-}
-
-// Test outputs (all open in new tab)
-console.log(getResponse('linkedin'));    // <a href="https://www.linkedin.com/in/jino-mathew-2a6177221/" ...>LinkedIn</a>
-console.log(getResponse('portfolio'));  // <a href="https://jingi2103.github.io/New-Portfolio/" ...>Portfolio</a>
-console.log(getResponse('github'));     // <a href="https://github.com/Jingi2103" ...>GitHub</a>
-console.log(getResponse('medium'));     // <a href="https://medium.com/@jinomathew2105" ...>Medium</a>
-console.log(getResponse('email'));      // <a href="mailto:jinomathew2105@gmail.com" ...>jinomathew2105@gmail.com</a>
     
     // Find matching intent
     for (let intent in intents) {
