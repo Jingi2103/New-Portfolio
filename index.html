@@ -521,6 +521,9 @@ const intents = {
   contact_fb: /\b(facebook|facebook\.com|fb|book|facebook profile)\b/i, 
   contact_general: /\b(contact|email|gmail|outlook|mail|id|address|reach|message|talk|dm|chat|ping)\b/i,
   project: /\b(project|projects|work|analysis|student performance|cricket|asia cup|isl|text conversion)\b/i,
+  certificates:/\b(certificates|certifications|certified|aws|microsoft|kaggle|competition)\b/i,
+  gender:/\b(male|boy|female|girl|gay|lesbian|gender|gendre|lgbtq)\b/i,
+  personal:/\b(are|you|sure|about what you told|said|truth)\b/i,  
   end: /\b(Thankyou|Thanks|cya|see you|Bye)\b/i,
 };
 
@@ -542,6 +545,9 @@ const responses = {
   contact_fb: "<a href=\"https://www.facebook.com/profile.php?id=100016716308147\" target=\"_blank\">Facebook</a>",
   contact_general: "Email him at <a href=\"mailto:jinomathew2105@gmail.com\" target=\"_blank\">jinomathew2105@gmail.com</a> or find him on LinkedIn!",
   project: "Jino’s featured projects include Student Performance Analysis, Cricket Analysis for Asia Cup 2025, and an ISL‑to‑Text Conversion System. Explore the details via the links below.",
+  certificates : "He has earned certifications in Machine Learning, Cloud Computing, and Data Analytics. His certifications include Introduction to Machine Learning from Kaggle, Microsoft Fabric End-to-End Configuration and Configuring a Semantic Model from Microsoft , and AWS Cloud Foundations training certificate from AWS. " 
+  gender : "Jino is a straight male."
+  personal:"If you have any doubt you can ask Jino directly about his personal life , am here to guide you with is professional details."      
   end: "Take care, see you soon :)",
 };
 
