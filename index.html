@@ -528,8 +528,8 @@ const intents = {
 };
 
 const responses = {
-  purpose: "Am here to help you know more about Jino and his professional details. Feel free to ask me about his work experience, educational qualification, skillset, projects or even his contact details.",
-  greeting: "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, or help you get in touch with him.",
+  purpose: "Am here to help you know more about Jino and his professional details. Feel free to ask me about his work experience, educational qualification, skillset, projects , certifications or even his contact details.",
+  greeting: "Hey there! I am Jino’s virtual assistant. I can provide detailed information regarding his professional experience, key projects, educational background, and technical skills, certifications or help you get in touch with him.",
   education_year: "Jino completed his Masters in Data Science in 2022 and completed his Bachelors in computer application (BCA) in 2019 without any year gaps in between.",
   education_marks: "Ohh ooh ... Jino might not want to reveal it .. Haha! :)",
   education_degree: "Jino holds an MSc in Data Science from Christ University and a BCA from Kristu Jayanti College.",
@@ -581,7 +581,7 @@ function getReply(input) {
     return responses[intent];
   }
 
-  return "I'm not sure about that. Try asking about his education, skills, projects, experience, or contact!";
+  return "I'm not sure about that. Try asking about his education, skills, projects, experience, certifications or contact!";
 }  
         function openCertificate(src) {
     document.getElementById("cert-popup").style.display = "flex";
